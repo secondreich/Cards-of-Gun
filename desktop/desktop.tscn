@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://kd833y5evuoa"]
+
+[ext_resource type="Script" uid="uid://b651jp8ekvr1j" path="res://desktop/desktop.gd" id="1_cg3fv"]
+
+[node name="Desktop" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cg3fv")
+
+[node name="desktop" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="desktops" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="desktops" type="Control" parent="ScrollContainer/desktops"]
+layout_mode = 2

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dstbv3dm0urfi"
+
+[deps]
+
+files=["res://assets/baseCard.base.translation", "res://assets/baseCard.display.translation", "res://assets/baseCard.index.translation", "res://assets/baseCard.card.translation", "res://assets/baseCard.comment.translation", "res://assets/baseCard.card.translation", "res://assets/baseCard.is.translation", "res://assets/baseCard.is.translation"]
+
+source_file="res://assets/baseCard.csv"
+dest_files=["res://assets/baseCard.base.translation", "res://assets/baseCard.display.translation", "res://assets/baseCard.index.translation", "res://assets/baseCard.card.translation", "res://assets/baseCard.comment.translation", "res://assets/baseCard.card.translation", "res://assets/baseCard.is.translation", "res://assets/baseCard.is.translation"]
+
+[params]
+
+compress=true
+delimiter=0

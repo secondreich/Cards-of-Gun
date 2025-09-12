@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cua1m11jhnr7m"
+valid=false
+
+[deps]
+
+source_file="res://assets/base_card.csv"
+
+[params]
+
+compress=true
+delimiter=0

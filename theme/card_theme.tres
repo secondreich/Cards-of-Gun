@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cnbfqosw6n3at"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sl4tm"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.864675, 0.864675, 0.864675, 0.933333)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwm16"]
+draw_center = false
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxFlat_sl4tm")
+Button/styles/normal = SubResource("StyleBoxFlat_qwm16")

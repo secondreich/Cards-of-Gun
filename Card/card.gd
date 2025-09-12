@@ -1,5 +1,6 @@
 extends Control
 
+class_name card
 
 enum cardState{following, dragging}
 @export var cardCurrentState = cardState.following
@@ -9,6 +10,13 @@ var velocity = Vector2.ZERO
 var damping = 0.20
 var stiffness = 500
 
+var preDeck
+var pickButton 
+
+@export var cardLabel : String
+@export var cardName : String
+@export var isPlurality: int
+@export var cardInfo : Dictionary
 
 func _process(delta: float) -> void:
 	match cardCurrentState:
@@ -35,3 +43,19 @@ func _on_button_button_up() -> void:
 	#print("按钮松开，跟随目标", follow_target)
 	cardCurrentState = cardState.following
 	pass
+	
+func initCard(Nm) -> void:
+	cardInfo = BaseCard.infosDic[Nm]
+	cardLabel = cardInfo["card_label"]
+	cardName = cardInfo["base_name"]
+	isPlurality = int(cardInfo["is_plurality"])
+	cardCurrentState = cardState.following
+	drawCard()
+	
+func drawCard():
+	print("draw completed")
+	pickButton = $Button
+	var imgPath = ""
+	$TextrueRect/ColorRect/itemImage.texture = load(imgPath)
+	$TextureRect/ColorRect/name.text = cardInfo["display_name"]
+	

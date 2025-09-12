@@ -42,4 +42,3 @@ func add_card(cardToAdd) -> void:
 	
 	
 	
-			

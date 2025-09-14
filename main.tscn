@@ -16,6 +16,11 @@ script = ExtResource("1_1bvp3")
 scene_1 = NodePath("Desktop3")
 scene_2 = NodePath("Desktop2")
 MaxHandCard = 10
+siteItems = {
+"avoid": 50,
+"load": 100,
+"shoot": 100
+}
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

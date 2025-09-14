@@ -9,8 +9,7 @@ extends Node2D
 
 func add_new_hand_card(cardName,desktop, caller = scene_1) -> Node:
 	print("发手牌：" + str(cardName))
-	var my_card_instance = baseCard.new()
-	var cardClass = my_card_instance.infosDic[cardName]["base_name"]
+	var cardClass = BaseCard.infosDic[cardName]["card_label"]
 	print("卡牌的类型是%s:"%cardClass)
 	var cardToAdd
 	cardToAdd = preload("res://Card/Card.tscn").instantiate() as card
@@ -27,14 +26,25 @@ func add_new_hand_card(cardName,desktop, caller = scene_1) -> Node:
 func get_cards():
 	
 	var num_cards = 3
+	var total_weight = get_total_weight(siteItems)
 	var selected_cards = []
 	for i in range(num_cards):
-		print("card added")
+		var random_num = randi() % total_weight
+		var cumulative_weight = 0
 		for c in siteItems.keys():
 			selected_cards.append(c)
 			print("card item")
-		
+			break
+	print(selected_cards)
+	
+	
 	for c in selected_cards:
 		await get_tree().create_timer(0,1).timeout
 		add_new_hand_card(c, scene_1)
 		
+		
+func get_total_weight(card_dict):
+	var total_weight = 0
+	for weight in card_dict.values():
+		total_weight += weight
+	return total_weight

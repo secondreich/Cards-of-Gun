@@ -14,8 +14,8 @@ offset_bottom = 40.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 854.0
+offset_bottom = 206.0
 
 [node name="desktops" type="HBoxContainer" parent="ScrollContainer"]
 layout_mode = 2

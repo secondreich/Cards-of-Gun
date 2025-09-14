@@ -5,11 +5,12 @@ var infosDic:Dictionary
 
 func _init() -> void:
 	infosDic = read_csv_as_nested_dict(file_path)
+	print(infosDic)
 	
 func read_csv_as_nested_dict(path: String) -> Dictionary:
 	var data = {}
 	var file = FileAccess.open(path, FileAccess.READ)
-	var headers = {}
+	var headers = []
 	var first_line = true
 	while not file.eof_reached():
 		var values = file.get_csv_line()

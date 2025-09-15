@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3kgk1vop3ws2" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ojgbg6l2h2bt" path="res://Card/Card.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://kd833y5evuoa" path="res://desktop/desktop.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cauq2ubb5e1tj" path="res://cardBackground/cardBackground.tscn" id="2_0xm2m"]
 [ext_resource type="Theme" uid="uid://cnbfqosw6n3at" path="res://theme/card_theme.tres" id="3_h2yge"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
@@ -10,11 +10,9 @@ font_size = 18
 shadow_size = 12
 shadow_color = Color(0.00392157, 0, 0, 0.615686)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("scene_1", "scene_2")]
-scale = Vector2(0.6, 0.6)
+[node name="Main" type="Node2D" node_paths=PackedStringArray("scene_1")]
 script = ExtResource("1_1bvp3")
-scene_1 = NodePath("Desktop3")
-scene_2 = NodePath("Desktop2")
+scene_1 = NodePath("deck")
 MaxHandCard = 10
 siteItems = {
 "avoid": 50,
@@ -37,24 +35,6 @@ offset_bottom = 320.0
 grow_horizontal = 1
 grow_vertical = 1
 follow_target = NodePath("../Control")
-
-[node name="Desktop" parent="." instance=ExtResource("2_0xm2m")]
-offset_left = 290.0
-offset_top = 20.0
-offset_right = 1890.0
-offset_bottom = 320.0
-
-[node name="Desktop2" parent="." instance=ExtResource("2_0xm2m")]
-offset_left = 290.0
-offset_top = 400.0
-offset_right = 1890.0
-offset_bottom = 700.0
-
-[node name="Desktop3" parent="." instance=ExtResource("2_0xm2m")]
-offset_left = 290.0
-offset_top = 762.0
-offset_right = 1890.0
-offset_bottom = 1062.0
 
 [node name="DrawCard" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.121569)
@@ -82,5 +62,11 @@ offset_right = 105.333
 offset_bottom = 46.0
 text = "Draw Card"
 label_settings = SubResource("LabelSettings_h2yge")
+
+[node name="deck" parent="." instance=ExtResource("2_0xm2m")]
+offset_left = 40.0
+offset_top = 893.0
+offset_right = 1620.0
+offset_bottom = 1213.0
 
 [connection signal="button_down" from="DrawCard/Button" to="." method="get_cards"]

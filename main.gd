@@ -7,7 +7,7 @@ extends Node2D
 
 @export var siteItems : Dictionary
 
-func add_new_hand_card(cardName,desktop, caller = scene_1) -> Node:
+func add_new_hand_card(cardName, cardDeck , caller = scene_1) -> Node:
 	print("发手牌：" + str(cardName))
 	var cardClass = BaseCard.infosDic[cardName]["card_label"]
 	print("卡牌的类型是%s:"%cardClass)
@@ -16,30 +16,28 @@ func add_new_hand_card(cardName,desktop, caller = scene_1) -> Node:
 	
 	cardToAdd.initCard(cardName)
 	
-	cardToAdd.global_position = caller.global_position
+	cardToAdd.global_position = self.global_position
 	cardToAdd.z_index = 100
-	desktop.add_card(cardToAdd)
+	cardDeck.add_card(cardToAdd)
 	
 	return cardToAdd
 
 
 func get_cards():
-	
-	var num_cards = 3
+	var num_cards = 7
 	var total_weight = get_total_weight(siteItems)
 	var selected_cards = []
 	for i in range(num_cards):
 		var random_num = randi() % total_weight
 		var cumulative_weight = 0
 		for c in siteItems.keys():
-			selected_cards.append(c)
-			print("card item")
-			break
-	print(selected_cards)
-	
-	
+			cumulative_weight += siteItems[c]
+			if random_num < cumulative_weight:
+				selected_cards.append(c)
+				print("注入select数组")
+				break
 	for c in selected_cards:
-		await get_tree().create_timer(0,1).timeout
+		await get_tree().create_timer(0.1,1).timeout
 		add_new_hand_card(c, scene_1)
 		
 		

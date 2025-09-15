@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 BaseCard="*res://assets/baseCard.gd"
 
+[display]
+
+window/size/viewport_width=2048
+window/size/viewport_height=1256
+
 [rendering]
 
 renderer/rendering_method="mobile"

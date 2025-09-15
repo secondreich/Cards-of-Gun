@@ -7,7 +7,7 @@ enum cardState{following, dragging}
 @export var follow_target : Node
 
 var velocity = Vector2.ZERO
-var damping = 0.20
+var damping = 0.25
 var stiffness = 500
 
 var preDeck
@@ -44,7 +44,6 @@ func _on_button_button_up() -> void:
 	
 func initCard(Nm) -> void:
 	cardInfo = BaseCard.infosDic[Nm]
-	print(cardInfo)
 	cardLabel = cardInfo["card_label"]
 	cardName = cardInfo["base_name"]
 	isPlurality = int(cardInfo["is_plurality"])
@@ -52,8 +51,8 @@ func initCard(Nm) -> void:
 	drawCard()
 	
 func drawCard():
-	print("draw completed")
-	pickButton = $Button
+	#print("draw completed")
+	#pickButton = $Button
 	var imgPath = "res://icon.svg"
 	$Control/Card/CardImage.texture = load(imgPath)
 	$Control/Card/CardName.text = cardInfo["display_name"]

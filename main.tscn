@@ -13,7 +13,7 @@ shadow_color = Color(0.00392157, 0, 0, 0.615686)
 [node name="Main" type="Node2D" node_paths=PackedStringArray("scene_1")]
 script = ExtResource("1_1bvp3")
 scene_1 = NodePath("deck")
-MaxHandCard = 10
+MaxHandCard = 7
 siteItems = {
 "avoid": 50,
 "load": 100,
@@ -64,9 +64,9 @@ text = "Draw Card"
 label_settings = SubResource("LabelSettings_h2yge")
 
 [node name="deck" parent="." instance=ExtResource("2_0xm2m")]
-offset_left = 40.0
-offset_top = 893.0
-offset_right = 1620.0
-offset_bottom = 1213.0
+offset_left = 17.0
+offset_top = 914.0
+offset_right = 1597.0
+offset_bottom = 1234.0
 
 [connection signal="button_down" from="DrawCard/Button" to="." method="get_cards"]

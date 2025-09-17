@@ -4,6 +4,9 @@ extends Panel
 @onready var cardDeck: Control = $cardDeck
 @onready var cardPoiDeck: HBoxContainer = $ScrollContainer/cardPoiDeck
 
+@export var card_num_limit : int 
+var card_total_num = 0
+
 
 func _process(delta: float) -> void:
 	if cardDeck.get_child_count() != 0:

@@ -8,9 +8,9 @@ extends Node2D
 @export var siteItems : Dictionary
 
 func add_new_hand_card(cardName, cardDeck , caller = scene_1) -> Node:
-	print("发手牌：" + str(cardName))
+	#print("发手牌：" + str(cardName))
 	var cardClass = BaseCard.infosDic[cardName]["card_label"]
-	print("卡牌的类型是%s:"%cardClass)
+	#print("卡牌的类型是%s:"%cardClass)
 	var cardToAdd
 	cardToAdd = preload("res://Card/Card.tscn").instantiate() as card
 	
@@ -24,18 +24,25 @@ func add_new_hand_card(cardName, cardDeck , caller = scene_1) -> Node:
 
 
 func get_cards():
-	var num_cards = 7
+	var num_cards = 3
 	var total_weight = get_total_weight(siteItems)
 	var selected_cards = []
 	for i in range(num_cards):
-		var random_num = randi() % total_weight
-		var cumulative_weight = 0
-		for c in siteItems.keys():
-			cumulative_weight += siteItems[c]
-			if random_num < cumulative_weight:
-				selected_cards.append(c)
-				print("注入select数组")
-				break
+		if(scene_1.card_total_num < MaxHandCard):
+			var random_num = randi() % total_weight
+			var cumulative_weight = 0
+			for c in siteItems.keys():
+				cumulative_weight += siteItems[c]
+				if random_num < cumulative_weight:
+					selected_cards.append(c)
+					scene_1.card_total_num += 1
+					print(selected_cards)
+					#print("注入select数组")
+					break
+					
+		else:
+			print("手牌达到上限")
+			break
 	for c in selected_cards:
 		await get_tree().create_timer(0.1,1).timeout
 		add_new_hand_card(c, scene_1)

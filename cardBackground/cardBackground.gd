@@ -8,7 +8,7 @@ extends Panel
 var card_total_num = 0
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if cardDeck.get_child_count() != 0:
 		var children = cardDeck.get_children()
 		sort_nodes_by_position(children)
@@ -42,6 +42,6 @@ func add_card(cardToAdd) -> void:
 	
 	cardToAdd.follow_target=cardBackground
 	
-	cardToAdd.preDeck=self
+	cardToAdd.preDeck = self
 	
 	cardToAdd.cardCurrentState=cardToAdd.cardState.following

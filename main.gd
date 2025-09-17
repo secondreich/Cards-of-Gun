@@ -7,7 +7,7 @@ extends Node2D
 
 @export var siteItems : Dictionary
 
-func add_new_hand_card(cardName, cardDeck , caller = scene_1) -> Node:
+func add_new_hand_card(cardName, cardDeck , _caller = scene_1) -> Node:
 	#print("发手牌：" + str(cardName))
 	var cardClass = BaseCard.infosDic[cardName]["card_label"]
 	#print("卡牌的类型是%s:"%cardClass)

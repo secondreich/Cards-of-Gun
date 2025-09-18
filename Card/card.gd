@@ -13,8 +13,6 @@ var stiffness = 500
 var preDeck
 var pickButton 
 
-var whichDeckMouseIn
-
 @export var cardLabel : String
 @export var cardName : String
 @export var isPlurality: int
@@ -23,19 +21,8 @@ var whichDeckMouseIn
 func _process(delta: float) -> void:
 	match cardCurrentState:
 		cardState.dragging:
-			#拖曳卡牌逻辑
-			var target_position = get_global_mouse_position() - size/4
+			var target_position = get_global_mouse_position() - size/2
 			global_position = global_position.lerp(target_position, 0.4)
-			
-			var mouse_position = get_global_mouse_position()
-			var nodes = get_tree().get_nodes_in_group("卡组分组")
-	
-			for node in nodes:
-				if node.get_global_rect().has_point(mouse_position) && node.visible == true:
-					whichDeckMouseIn = node
-					print(whichDeckMouseIn)
-			
-			
 		cardState.following:
 			if follow_target != null:
 				var target_position = follow_target.global_position
@@ -48,17 +35,10 @@ func _process(delta: float) -> void:
 func _on_button_button_down() -> void:
 	#print("按钮按下，跟随目标", follow_target)
 	cardCurrentState = cardState.dragging
-	if follow_target != null:
-		follow_target.queue_free()
 	pass
 	
 func _on_button_button_up() -> void:
 	#print("按钮松开，跟随目标", follow_target)
-	if(whichDeckMouseIn != null):
-		whichDeckMouseIn.add_card(self)
-	else:
-		preDeck.add_card(self)
-
 	cardCurrentState = cardState.following
 	pass
 	

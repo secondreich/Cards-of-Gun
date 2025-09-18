@@ -19,9 +19,10 @@ config/icon="res://icon.svg"
 
 BaseCard="*res://assets/baseCard.gd"
 
-[global_group]
+[display]
 
-"卡组分组"=""
+window/size/viewport_width=2048
+window/size/viewport_height=1256
 
 [rendering]
 

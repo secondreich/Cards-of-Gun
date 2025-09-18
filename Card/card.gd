@@ -10,6 +10,8 @@ var velocity = Vector2.ZERO
 var damping = 0.25
 var stiffness = 500
 
+var whichDeckIn
+
 var preDeck
 var pickButton 
 
@@ -21,8 +23,15 @@ var pickButton
 func _process(delta: float) -> void:
 	match cardCurrentState:
 		cardState.dragging:
-			var target_position = get_global_mouse_position() - size/2
+			var target_position = get_global_mouse_position() - size/4
 			global_position = global_position.lerp(target_position, 0.4)
+			
+			var nodes = get_tree().get_nodes_in_group("卡组分组")
+			var mouse_position = get_global_mouse_position()
+			for node in nodes:
+				if node.get_global_rect().has_point(mouse_position) && node.visible == true:
+					whichDeckIn = node				
+			
 		cardState.following:
 			if follow_target != null:
 				var target_position = follow_target.global_position
@@ -35,11 +44,17 @@ func _process(delta: float) -> void:
 func _on_button_button_down() -> void:
 	#print("按钮按下，跟随目标", follow_target)
 	cardCurrentState = cardState.dragging
+	if follow_target != null:
+		follow_target.queue_free()
 	pass
 	
 func _on_button_button_up() -> void:
 	#print("按钮松开，跟随目标", follow_target)
 	cardCurrentState = cardState.following
+	if whichDeckIn != null:
+		whichDeckIn.add_card(self)
+	else:
+		preDeck.add_card(self)
 	pass
 	
 func initCard(Nm) -> void:

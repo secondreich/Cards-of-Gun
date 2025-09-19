@@ -65,4 +65,8 @@ func update_data() -> void:
 	$HandCardPer.value = scene_1.card_total_num
 	$PlayerProperty/PlayerHandCard.text = "手牌：     "+ str(scene_1.card_total_num) + " / " + str(MaxHandCard)
 	
-	
+func next_turn() -> void:
+	var usedCards = $UsedCards.cardDeck.get_children()
+	for c in usedCards:
+		c.cardCurrentState = c.cardState.del
+	pass

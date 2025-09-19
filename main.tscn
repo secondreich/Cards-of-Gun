@@ -64,6 +64,33 @@ offset_bottom = 46.0
 text = "Draw Card"
 label_settings = SubResource("LabelSettings_h2yge")
 
+[node name="NextTurn" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.121569)
+offset_left = 55.0
+offset_top = 552.5
+offset_right = 174.9997
+offset_bottom = 617.5
+
+[node name="TextureRect" type="TextureRect" parent="NextTurn"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 65.0
+
+[node name="Button" type="Button" parent="NextTurn"]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 65.0
+theme = ExtResource("3_h2yge")
+
+[node name="Label" type="Label" parent="NextTurn"]
+layout_mode = 0
+offset_left = 13.3333
+offset_top = 20.0
+offset_right = 105.333
+offset_bottom = 46.0
+text = "Next Turn"
+label_settings = SubResource("LabelSettings_h2yge")
+
 [node name="HandCards" parent="." groups=["卡组分组"] instance=ExtResource("2_0xm2m")]
 offset_left = 647.5
 offset_top = 1170.0
@@ -77,9 +104,9 @@ offset_right = 2225.0
 offset_bottom = 930.0
 
 [node name="HandCardPer" type="ProgressBar" parent="."]
-offset_left = 602.5
+offset_left = 610.0
 offset_top = 1170.0
-offset_right = 640.5
+offset_right = 648.0
 offset_bottom = 1490.0
 fill_mode = 3
 
@@ -144,3 +171,4 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="DrawCard/Button" to="." method="get_cards"]
+[connection signal="button_down" from="NextTurn/Button" to="." method="next_turn"]

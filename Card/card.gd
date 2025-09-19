@@ -2,7 +2,7 @@ extends Control
 
 class_name card
 
-enum cardState{following, dragging, vfs}
+enum cardState{following, dragging, del, vfs}
 @export var cardCurrentState = cardState.following
 @export var follow_target : Node
 
@@ -55,6 +55,10 @@ func _process(delta: float) -> void:
 				velocity += force * delta
 				velocity *= (1.0 - damping)
 				global_position += velocity * delta
+		
+		cardState.del:
+			self.queue_free()
+			follow_target.queue_free()
 				
 func _on_mouse_entered():
 	if self.size == original_size:

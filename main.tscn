@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://2vbd0o2lue8e"]
+[gd_scene load_steps=7 format=3 uid="uid://2vbd0o2lue8e"]
 
 [ext_resource type="Script" uid="uid://c3kgk1vop3ws2" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ojgbg6l2h2bt" path="res://Card/Card.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cauq2ubb5e1tj" path="res://cardBackground/cardBackground.tscn" id="2_0xm2m"]
 [ext_resource type="Theme" uid="uid://cnbfqosw6n3at" path="res://theme/card_theme.tres" id="3_h2yge"]
+[ext_resource type="LabelSettings" uid="uid://d4mii2ld825i4" path="res://theme/font.tres" id="5_lquwl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 18
@@ -11,14 +12,13 @@ shadow_size = 12
 shadow_color = Color(0.00392157, 0, 0, 0.615686)
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("scene_1")]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_1bvp3")
 scene_1 = NodePath("HandCards")
-MaxHandCard = 7
 siteItems = {
-"avoid": 50,
+"avoid": 30,
 "load": 100,
-"shoot": 100
+"shoot": 80
 }
 
 [node name="Control" type="Control" parent="."]
@@ -65,15 +65,82 @@ text = "Draw Card"
 label_settings = SubResource("LabelSettings_h2yge")
 
 [node name="HandCards" parent="." groups=["卡组分组"] instance=ExtResource("2_0xm2m")]
-offset_left = 416.0
-offset_top = 928.0
-offset_right = 1996.0
-offset_bottom = 1248.0
+offset_left = 647.5
+offset_top = 1170.0
+offset_right = 2227.5
+offset_bottom = 1490.0
 
 [node name="UsedCards" parent="." groups=["卡组分组"] instance=ExtResource("2_0xm2m")]
-offset_left = 414.0
-offset_top = 568.0
-offset_right = 1994.0
-offset_bottom = 888.0
+offset_left = 645.0
+offset_top = 610.0
+offset_right = 2225.0
+offset_bottom = 930.0
+
+[node name="HandCardPer" type="ProgressBar" parent="."]
+offset_left = 602.5
+offset_top = 1170.0
+offset_right = 640.5
+offset_bottom = 1490.0
+fill_mode = 3
+
+[node name="PlayerProperty" type="Panel" parent="."]
+modulate = Color(0.011764706, 0.12156863, 0.16470589, 0.49803922)
+self_modulate = Color(0.36862746, 0.36862746, 0.36862746, 0.4)
+offset_left = 87.5
+offset_top = 1172.5
+offset_right = 507.5
+offset_bottom = 1492.5
+
+[node name="PlayerAttack" type="Label" parent="PlayerProperty"]
+layout_mode = 0
+anchor_left = 0.023809526
+anchor_top = 0.031249985
+anchor_right = 0.97619045
+anchor_bottom = 0.21874997
+text = "攻击力:    0"
+label_settings = ExtResource("5_lquwl")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerLife" type="Label" parent="PlayerProperty"]
+layout_mode = 0
+anchor_left = 0.023809524
+anchor_top = 0.25
+anchor_right = 0.97619045
+anchor_bottom = 0.4375
+offset_top = 10.0
+offset_bottom = 10.0
+text = "生命：     100 / 100"
+label_settings = ExtResource("5_lquwl")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerHandCard" type="Label" parent="PlayerProperty"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023809524
+anchor_top = 0.46875
+anchor_right = 0.97619045
+anchor_bottom = 0.65625
+offset_top = 20.0
+offset_bottom = 20.0
+text = "手牌：     0 / 7"
+label_settings = ExtResource("5_lquwl")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerAttack2" type="Label" parent="PlayerProperty"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023809526
+anchor_top = 0.031249985
+anchor_right = 0.97619045
+anchor_bottom = 0.21874997
+offset_top = 240.0
+offset_bottom = 240.0
+text = "弹匣上限: 0"
+label_settings = ExtResource("5_lquwl")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="DrawCard/Button" to="." method="get_cards"]

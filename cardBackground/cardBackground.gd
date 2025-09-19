@@ -45,3 +45,6 @@ func add_card(cardToAdd) -> void:
 	cardToAdd.preDeck=self
 	
 	cardToAdd.cardCurrentState=cardToAdd.cardState.following
+
+
+	

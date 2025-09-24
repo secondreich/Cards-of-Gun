@@ -1,5 +1,5 @@
 ﻿base_name,display_name,index,card_description,comment,card_label,is_deleted,is_plurality
 shoot,射击,1,消耗一发子弹，造成1.0*攻击的伤害,,"base,attack",0,1
-avoid,闪避,2,闪避一发子弹,,"base,defence",0,0
+avoid,闪避,2,闪避一发子弹,,"base,avoid,defence",0,0
 load,装弹,3,装填一发子弹,,"base,load",0,1
-volley,齐射,4,消耗所有子弹，造成X*攻击的伤害(X为消耗的子弹数),,"base,attack",0,0
+volley,齐射,4,消耗所有子弹，造成X*攻击的伤害(X为消耗的子弹数),,"base,attack,volley",0,0

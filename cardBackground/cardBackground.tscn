@@ -17,6 +17,7 @@ offset_right = -1580.0
 offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(110, 160)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(1, 0)

@@ -12,6 +12,7 @@ anchor_bottom = 0.49382716
 offset_right = -1.5258789e-05
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(110, 160)
 script = ExtResource("1_21rx5")
 follow_target = NodePath(".")
 metadata/_edit_use_anchors_ = true
@@ -23,6 +24,7 @@ anchor_left = 0.045454547
 anchor_top = 0.03125
 anchor_right = 0.9545455
 anchor_bottom = 0.96875
+pivot_offset = Vector2(110, 160)
 metadata/_edit_use_anchors_ = true
 
 [node name="Card" type="ColorRect" parent="Control"]

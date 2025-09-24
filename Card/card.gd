@@ -96,8 +96,7 @@ func initCard(Nm) -> void:
 	drawCard()
 	
 func drawCard():
-	#print("draw completed")
-	#pickButton = $Button
+	pickButton = $"Card Button"
 	var imgPath = "res://image/"+ str(cardName)+".png"
 	$Control/Card/CardImage.texture = load(imgPath)
 	$Control/Card/CardName.text = cardInfo["display_name"]

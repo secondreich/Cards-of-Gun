@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://2vbd0o2lue8e"]
+[gd_scene load_steps=7 format=3 uid="uid://2vbd0o2lue8e"]
 
 [ext_resource type="Script" uid="uid://c3kgk1vop3ws2" path="res://Gd script/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ojgbg6l2h2bt" path="res://Card/Card.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cauq2ubb5e1tj" path="res://cardBackground/cardBackground.tscn" id="2_0xm2m"]
 [ext_resource type="Theme" uid="uid://cnbfqosw6n3at" path="res://theme/card_theme.tres" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://dwx1apfso1j46" path="res://Gd script/next_turn.gd" id="4_7mycd"]
 [ext_resource type="LabelSettings" uid="uid://d4mii2ld825i4" path="res://theme/font.tres" id="5_lquwl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
@@ -75,7 +74,6 @@ offset_left = 55.0
 offset_top = 552.5
 offset_right = 174.9997
 offset_bottom = 617.5
-script = ExtResource("4_7mycd")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="NextTurn"]

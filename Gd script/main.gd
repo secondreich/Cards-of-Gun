@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name main
+
 @export var scene_1 : Node
 @export var scene_2 : Node
 
@@ -7,21 +9,29 @@ extends Node2D
 
 @export var siteItems : Dictionary
 
-#定义玩家血量和上限
+#定义血量和上限
 @export var playerMaxLife = 3 
 @export var playerLife = 3
+
+@export var oppoentrMaxLife = 3 
+@export var oppoentLife = 3
+
 
 @export var playerMaxAmmo = 3
 @export var playerAmmo = 0
 
+@export var oppoentMaxAmmo = 3
+@export var oppoentAmmo = 0
+
 var now_used_card 
 
-func _ready():
+func _ready() -> void:
 	$HandCardPer.max_value = MaxHandCard
 	$PlayerProperty/PlayerHandCard.text = "手牌：     " + str(scene_1.card_total_num) + " / " + str(MaxHandCard)
 	$PlayerProperty/PlayerLife.text = "生命：     " + str(playerLife) + " / " + str(playerMaxLife)
 	$PlayerProperty/PlayerAmmo.text = "弹匣:       " + str(playerAmmo)+ " / " + str(playerMaxAmmo)
 	print("ready")
+	
 	
 
 func _process(delta: float) -> void:
@@ -89,6 +99,9 @@ func get_cards():
 		await get_tree().create_timer(0.1,1).timeout
 		add_new_hand_card(c, scene_1)
 		add_new_hand_card(c, scene_2)
+	if checkVolley() == true:
+		add_new_hand_card("volley" ,scene_1)
+		
 	
 func get_total_weight(card_dict):
 	var total_weight = 0
@@ -107,8 +120,64 @@ func update_data() -> void:
 func next_turn() -> void:
 	var usedCards = $UsedCards.cardDeck.get_children()
 	var delCards = 0
+	#结算
+	print(usedCards)
+	if not usedCards.is_empty():
+		checkResult(usedCards , usedCards)
+	
+	#消除卡牌
 	for c in usedCards:
 		c.cardCurrentState = c.cardState.del
 		delCards +=1
 	scene_1.card_total_num -= delCards
+
+#检查伤害结算，返回各式：用户造成的伤害，用户弹药变化，对手造成的伤害，对手弹药变化
+func checkResult(PlayerCards , OppoentCards):
+	var playerDamage = 0
+	var oppoentDamage = 0
+	var playerLoad = 0
+	var oppoentLoad = 0
+	var playerType = PlayerCards[0].cardLabel
+	var oppoentType = OppoentCards[0].cardLabel
+	
+	for c in PlayerCards:
+		if c.cardLabel.find("volley") != -1 :
+			playerDamage = playerMaxAmmo
+			playerLoad -= playerMaxAmmo
+			break
+		elif c.cardLabel.find("attack") != -1 && oppoentType.find("volley") == -1:
+			playerDamage += 1
+			playerLoad -= 1
+		elif c.cardLabel.find("load") != -1 && oppoentType.find("attack") == -1:
+			playerLoad += 1
+		elif c.cardLabel.find("avoid") != -1 && oppoentType.find("volley") == -1:
+			oppoentDamage = 0
+			
+	for c in OppoentCards:
+		if c.cardLabel.find("volley") != -1 :
+			oppoentDamage = oppoentMaxAmmo
+			oppoentLoad -= oppoentMaxAmmo
+			break
+		elif c.cardLabel.find("attack") != -1 && playerType.find("volley") == -1:
+			oppoentDamage += 1
+			oppoentLoad -= 1
+		elif c.cardLabel.find("load") != -1 && playerType.find("attack") == -1:
+			oppoentLoad += 1
+		elif c.cardLabel.find("avoid") != -1 && playerType.find("volley") == -1:
+			playerDamage = 0
+	
+	playerLife -= max(oppoentDamage - playerDamage, 0)
+	oppoentLife -= max(playerDamage - oppoentDamage, 0)
+	playerAmmo += playerLoad
+	oppoentAmmo += oppoentLoad
+	
+
+#检查是否添加齐射牌
+func checkVolley() -> bool:
+	for c in $HandCards.cardDeck.get_children():
+		if c.cardLabel.find("volley") != -1:
+			return false
+	if playerAmmo == playerMaxAmmo:
+		return true
+	return false
 	

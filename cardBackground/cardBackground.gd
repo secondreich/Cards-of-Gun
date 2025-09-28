@@ -23,7 +23,7 @@ func sort_nodes_by_position(children):
 func sort_by_position(a,b):
 	return a.position.x < b.position.x
 	
-func add_card(cardToAdd) -> void:
+func add_card(cardToAdd, isOppoent) -> void:
 	var index=cardToAdd.z_index
 	var cardBackground=preload("res://cardBackground/cardBackground.tscn").instantiate()
 	cardPoiDeck.add_child(cardBackground)
@@ -45,6 +45,9 @@ func add_card(cardToAdd) -> void:
 	cardToAdd.preDeck=self
 	
 	cardToAdd.cardCurrentState=cardToAdd.cardState.following
-
+	
+	if isOppoent == true:
+		cardToAdd.oppoentCard_ready()
+	
 
 	

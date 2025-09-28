@@ -1,53 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://067hmstoy856"]
+[gd_scene load_steps=8 format=3 uid="uid://067hmstoy856"]
 
 [ext_resource type="Script" uid="uid://cgnlbpr6fxwfc" path="res://Card/card.gd" id="1_3g4ca"]
 [ext_resource type="Texture2D" uid="uid://coimbvxye887x" path="res://icon.svg" id="2_4ap44"]
 [ext_resource type="Theme" uid="uid://cnbfqosw6n3at" path="res://theme/card_theme.tres" id="3_qsyvp"]
 [ext_resource type="Animation" uid="uid://oymowc6byo4q" path="res://Amine/card_filp.res" id="4_4ap44"]
-
-[sub_resource type="Animation" id="Animation_qsyvp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Card/CardName:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Card/CardImage:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Control:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.05, 1)]
-}
+[ext_resource type="Animation" uid="uid://n0kpuke222rh" path="res://Amine/RESET.res" id="5_b0c82"]
+[ext_resource type="Animation" uid="uid://b7qf1r4guejf" path="res://Amine/card_out.res" id="6_b0c82"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b0c82"]
 _data = {
-&"RESET": SubResource("Animation_qsyvp"),
-&"card_filp": ExtResource("4_4ap44")
+&"RESET": ExtResource("5_b0c82"),
+&"card_flip": ExtResource("4_4ap44"),
+&"card_out": ExtResource("6_b0c82")
 }
 
 [node name="Control" type="Control" node_paths=PackedStringArray("follow_target")]
@@ -55,7 +19,7 @@ custom_minimum_size = Vector2(220, 320)
 layout_mode = 3
 anchor_right = 0.19097224
 anchor_bottom = 0.49382716
-offset_right = -1.5258789e-05
+offset_right = 0.00010681152
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3g4ca")
@@ -69,8 +33,7 @@ anchor_left = 0.045454547
 anchor_top = 0.03125
 anchor_right = 0.9545455
 anchor_bottom = 0.96875
-offset_right = -1.5258789e-05
-scale = Vector2(0.05, 1)
+offset_right = -0.009887695
 pivot_offset = Vector2(100, 160)
 metadata/_edit_use_anchors_ = true
 
@@ -86,7 +49,6 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="CardName" type="Label" parent="Control/Card"]
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.10344828
@@ -104,7 +66,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CardImage" type="TextureRect" parent="Control/Card"]
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

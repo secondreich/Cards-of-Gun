@@ -61,14 +61,15 @@ func _process(delta: float) -> void:
 			follow_target.queue_free()
 				
 func _on_mouse_entered():
-	if self.size == original_size:
+	if self.size == original_size && $"Card Button".disabled == false:
 		var tween = create_tween()
 		tween.tween_property(self, "size", self.size * ZOOM_SCALE, ZOOM_DURATION / 2)
 		
 		
 func _on_mouse_exited():
-	var tween = create_tween()
-	tween.tween_property(self, "size", self.size / ZOOM_SCALE, ZOOM_DURATION / 2)
+	if $"Card Button".disabled == false:
+		var tween = create_tween()
+		tween.tween_property(self, "size", self.size / ZOOM_SCALE, ZOOM_DURATION / 2)
 
 func _on_button_button_down() -> void:
 	#print("按钮按下，跟随目标", follow_target)
@@ -82,9 +83,9 @@ func _on_button_button_up() -> void:
 	cardCurrentState = cardState.following
 	
 	if whichDeckIn != null:
-		whichDeckIn.add_card(self)
+		whichDeckIn.add_card(self, false)
 	else:
-		preDeck.add_card(self)
+		preDeck.add_card(self, false)
 	pass
 	
 func initCard(Nm) -> void:
@@ -94,10 +95,26 @@ func initCard(Nm) -> void:
 	isPlurality = int(cardInfo["is_plurality"])
 	cardCurrentState = cardState.following
 	drawCard()
+
 	
 func drawCard():
 	pickButton = $"Card Button"
 	var imgPath = "res://image/"+ str(cardName)+".png"
 	$Control/Card/CardImage.texture = load(imgPath)
 	$Control/Card/CardName.text = cardInfo["display_name"]
-	
+
+
+func cardFlip() -> void:
+	if not $CardFlip.is_playing():
+		$CardFlip.play("card_flip")
+		print("播放反转动画")
+
+func cardOut() -> void:
+	$CardFlip.play("card_out")
+	print("播放弹出动画")
+
+func oppoentCard_ready() -> void:
+	$Control/Card/CardName.self_modulate = 0
+	$Control/Card/CardImage.self_modulate = 0
+	$"Card Button".disabled = true
+	pass

@@ -6,15 +6,18 @@ class_name main
 @export var scene_2 : Node
 
 #定义血量和上限
-@export var playerMaxLife = 3 
-@export var playerLife = 3
-@export var oppoentrMaxLife = 3 
+@export var playerMaxLife = 100 
+@export var playerLife = 100
+@export var oppoentrMaxLife = 100 
 @export var oppoentLife = 3
 
 @export var playerMaxAmmo = 3
 @export var playerAmmo = 0
 @export var oppoentMaxAmmo = 3
 @export var oppoentAmmo = 0
+
+@export var playerAttack = 20
+@export var oppoentAttack = 20
 
 #当前使用的卡，检查复数打出机制
 var now_used_card 
@@ -24,18 +27,15 @@ var discard_deck: Array = []
 
 func _ready() -> void:
 	$HandCardPer.max_value = 7
-	$PlayerProperty/PlayerHandCard.text = "手牌：     " + str(scene_1.card_total_num) + " / " + str(7)
-	$PlayerProperty/PlayerLife.text = "生命：     " + str(playerLife) + " / " + str(playerMaxLife)
-	$PlayerProperty/PlayerAmmo.text = "弹匣:       " + str(playerAmmo)+ " / " + str(playerMaxAmmo)
+	update_data()
+	get_oppoent_cards()
 	print("ready")
 	
-	
-
 func _process(delta: float) -> void:
 	var usedCards = $UsedCards.cardDeck.get_children()
 	var handsCards = $HandCards.cardDeck.get_children()
 	
-	#判断是否下一轮
+	#判断是否能下一轮
 	#if scene_1.card_total_num < playerLife:
 		#$DrawCard/Button.disabled = false
 	#else:
@@ -56,18 +56,18 @@ func _process(delta: float) -> void:
 	update_data()
 	
 #下一轮次，发牌
-func add_new_hand_card(cardName, cardDeck , _caller = scene_1,  _caller2 = scene_2) -> Node:
+func add_new_hand_card(cardName, cardDeck, _isOppoent, _caller = scene_1,  _caller2 = scene_2) -> Node:
 	#print("发手牌：" + str(cardName))
 	var cardClass = BaseCard.infosDic[cardName]["card_label"]
 	#print("卡牌的类型是%s:"%cardClass)
 	var cardToAdd
-	cardToAdd = preload("res://Card/Card.tscn").instantiate() as card
+	cardToAdd = preload("res://Card/Card_test.tscn").instantiate() as card
 	
 	cardToAdd.initCard(cardName)
 	
 	cardToAdd.global_position = self.global_position
 	cardToAdd.z_index = 100
-	cardDeck.add_card(cardToAdd)
+	cardDeck.add_card(cardToAdd, _isOppoent)
 	
 	return cardToAdd
 
@@ -97,26 +97,21 @@ func get_cards():
 	for c in selected_cards:
 		scene_1.card_total_num += 1
 		await get_tree().create_timer(0.1,1).timeout
-		add_new_hand_card(c, scene_1)
+		add_new_hand_card(c, scene_1, false)
 	if checkVolley() == true:
-		add_new_hand_card("volley" ,scene_1)
-
-func get_oppoent_cards():
-	var num_cards = 1
-	var oppoentDeck = get_oppoent_deck()
-	var selected_cards
-	var index = randi_range(0,  oppoentDeck.size() - 1)
-	selected_cards = oppoentDeck[index]
-	for i in range(num_cards):
-		await get_tree().create_timer(0.1,1).timeout
-		add_new_hand_card(selected_cards, scene_2)
+		add_new_hand_card("volley" ,scene_1, false)
 
 #更新数据
 func update_data() -> void:
 	$HandCardPer.value = scene_1.card_total_num
+	$PlayerProperty/PlayerAttack.text ="攻击：     " + str(playerAttack)
 	$PlayerProperty/PlayerHandCard.text = "手牌：     " + str(scene_1.card_total_num) + " / " + str(7)
 	$PlayerProperty/PlayerLife.text = "生命：     " + str(playerLife) + " / " + str(playerMaxLife)
 	$PlayerProperty/PlayerAmmo.text = "弹匣:       " + str(playerAmmo)+ " / " + str(playerMaxAmmo)
+	
+	$OppoentProperty/OppoentAttack.text ="攻击：     " + str(oppoentAttack)
+	$OppoentProperty/OppoentLife.text ="生命：     " + str(oppoentLife) + " / " + str(oppoentrMaxLife)
+	$OppoentProperty/OppoentAmmo.text ="弹匣:       " + str(oppoentAmmo)+ " / " + str(oppoentMaxAmmo)
 	
 #下一回合
 func next_turn() -> void:
@@ -124,11 +119,21 @@ func next_turn() -> void:
 	var oppoentCards = $OppoentCards.cardDeck.get_children()
 	var delCards = 0
 	#结算
+	for c in $OppoentCards.cardDeck.get_children():
+		c.cardFlip()
 
-	if not usedCards.is_empty():
-		checkResult(usedCards , oppoentCards)
 	
-	#消除卡牌
+	if not usedCards.is_empty() && not oppoentCards.is_empty():
+		checkResult(usedCards , oppoentCards)
+	await get_tree().create_timer(2,3).timeout
+	#消除卡牌动画与清空队列
+	for c in $OppoentCards.cardDeck.get_children():
+		c.cardOut()
+		await get_tree().create_timer(0.1,1).timeout
+	for c in $UsedCards.cardDeck.get_children():
+		c.cardOut()
+		await get_tree().create_timer(0.1,1).timeout
+	await get_tree().create_timer(1,2).timeout
 	for c in usedCards:
 		c.cardCurrentState = c.cardState.del
 		
@@ -178,12 +183,12 @@ func checkResult(PlayerCards , OppoentCards):
 		elif c.cardLabel.find("avoid") != -1 && playerType.find("volley") == -1:
 			playerDamage = 0
 	
-	playerLife -= max(oppoentDamage - playerDamage, 0)
-	oppoentLife -= max(playerDamage - oppoentDamage, 0)
+	playerLife -= max(oppoentDamage - playerDamage, 0) * oppoentAttack
+	oppoentLife -= max(playerDamage - oppoentDamage, 0) * playerAttack
 	playerAmmo += playerLoad
 	oppoentAmmo += oppoentLoad
 	
-
+	
 #检查是否添加齐射牌
 func checkVolley() -> bool:
 	for c in $HandCards.cardDeck.get_children():
@@ -192,6 +197,16 @@ func checkVolley() -> bool:
 	if playerAmmo == playerMaxAmmo:
 		return true
 	return false
+	
+func get_oppoent_cards():
+	var num_cards = 1
+	var oppoentDeck = get_oppoent_deck()
+	var selected_cards
+	var index = randi_range(0,  oppoentDeck.size() - 1)
+	selected_cards = oppoentDeck[index]
+	for i in range(num_cards):
+		await get_tree().create_timer(0.1,1).timeout
+		add_new_hand_card(selected_cards, scene_2, true)
 
 func get_oppoent_deck() -> Array:
 	var oppoentCards = ["shoot", "avoid", "load"]

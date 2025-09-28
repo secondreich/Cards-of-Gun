@@ -16,6 +16,7 @@ scale = Vector2(0.4, 0.4)
 script = ExtResource("1_1bvp3")
 scene_1 = NodePath("HandCards")
 scene_2 = NodePath("OppoentCards")
+oppoentLife = 100
 playerDeck = ["load", "load", "load", "shoot", "shoot", "shoot", "avoid"]
 
 [node name="DrawCard" type="Panel" parent="."]
@@ -114,12 +115,15 @@ offset_right = 487.5
 offset_bottom = 410.0
 
 [node name="OppoentAttack" type="Label" parent="OppoentProperty"]
-layout_mode = 0
-anchor_left = 0.023809526
-anchor_top = 0.031249985
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023809524
+anchor_top = 0.375
 anchor_right = 0.97619045
-anchor_bottom = 0.21874997
-text = "攻击力:    0"
+anchor_bottom = 0.5625
+offset_top = -80.0
+offset_bottom = -79.99999
+text = "攻击：     20"
 label_settings = ExtResource("5_lquwl")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -127,26 +131,12 @@ metadata/_edit_use_anchors_ = true
 [node name="OppoentLife" type="Label" parent="OppoentProperty"]
 layout_mode = 0
 anchor_left = 0.023809524
-anchor_top = 0.25
+anchor_top = 0.125
 anchor_right = 0.97619045
-anchor_bottom = 0.4375
-offset_top = 10.0
-offset_bottom = 10.0
+anchor_bottom = 0.3125
+offset_top = 80.0
+offset_bottom = 80.0
 text = "生命：     100 / 100"
-label_settings = ExtResource("5_lquwl")
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppoentHandCard" type="Label" parent="OppoentProperty"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.023809524
-anchor_top = 0.46875
-anchor_right = 0.97619045
-anchor_bottom = 0.65625
-offset_top = 20.0
-offset_bottom = 20.0
-text = "手牌：     0 / 7"
 label_settings = ExtResource("5_lquwl")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -154,17 +144,16 @@ metadata/_edit_use_anchors_ = true
 [node name="OppoentAmmo" type="Label" parent="OppoentProperty"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.023809526
-anchor_top = 0.031249985
+anchor_left = 0.023809524
+anchor_top = 0.625
 anchor_right = 0.97619045
-anchor_bottom = 0.21874997
-offset_top = 240.0
-offset_bottom = 240.0
+anchor_bottom = 0.8125
 grow_horizontal = 2
 grow_vertical = 2
 text = "弹匣:       0 / 3"
 label_settings = ExtResource("5_lquwl")
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerProperty" type="Panel" parent="."]
 modulate = Color(0.011764706, 0.12156863, 0.16470589, 0.49803922)
@@ -180,7 +169,7 @@ anchor_left = 0.023809526
 anchor_top = 0.031249985
 anchor_right = 0.97619045
 anchor_bottom = 0.21874997
-text = "攻击力:    0"
+text = "攻击力:    20"
 label_settings = ExtResource("5_lquwl")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://2vbd0o2lue8e"]
+[gd_scene load_steps=6 format=3 uid="uid://2vbd0o2lue8e"]
 
 [ext_resource type="Script" uid="uid://c3kgk1vop3ws2" path="res://Gd script/main.gd" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://ojgbg6l2h2bt" path="res://Card/Card.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cauq2ubb5e1tj" path="res://cardBackground/cardBackground.tscn" id="2_0xm2m"]
 [ext_resource type="Theme" uid="uid://cnbfqosw6n3at" path="res://theme/card_theme.tres" id="3_h2yge"]
 [ext_resource type="LabelSettings" uid="uid://d4mii2ld825i4" path="res://theme/font.tres" id="5_lquwl"]
@@ -17,40 +16,21 @@ scale = Vector2(0.4, 0.4)
 script = ExtResource("1_1bvp3")
 scene_1 = NodePath("HandCards")
 scene_2 = NodePath("OppoentCards")
-siteItems = {
-"avoid": 30,
-"load": 100,
-"shoot": 80
-}
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Control2" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("1_ig7tw")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 220.0
-offset_bottom = 320.0
-grow_horizontal = 1
-grow_vertical = 1
-follow_target = NodePath("../Control")
+playerDeck = ["load", "load", "load", "shoot", "shoot", "shoot", "avoid"]
 
 [node name="DrawCard" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.121569)
-offset_left = 53.3333
-offset_top = 456.667
-offset_right = 173.333
-offset_bottom = 521.667
+offset_left = 185.0
+offset_top = 690.0
+offset_right = 304.9997
+offset_bottom = 755.0
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="DrawCard"]
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 65.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="DrawCard"]
 layout_mode = 0
@@ -67,25 +47,28 @@ offset_right = 105.333
 offset_bottom = 46.0
 text = "Draw Card"
 label_settings = SubResource("LabelSettings_h2yge")
+metadata/_edit_use_anchors_ = true
 
 [node name="NextTurn" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.121569)
-offset_left = 55.0
-offset_top = 552.5
-offset_right = 174.9997
-offset_bottom = 617.5
+offset_left = 186.6667
+offset_top = 785.833
+offset_right = 306.66638
+offset_bottom = 850.833
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="NextTurn"]
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 65.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="NextTurn"]
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 65.0
 theme = ExtResource("3_h2yge")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="NextTurn"]
 layout_mode = 0
@@ -95,6 +78,7 @@ offset_right = 105.333
 offset_bottom = 46.0
 text = "Next Turn"
 label_settings = SubResource("LabelSettings_h2yge")
+metadata/_edit_use_anchors_ = true
 
 [node name="HandCards" parent="." groups=["卡组分组"] instance=ExtResource("2_0xm2m")]
 offset_left = 645.0
@@ -120,6 +104,67 @@ offset_top = 1170.0
 offset_right = 648.0
 offset_bottom = 1490.0
 fill_mode = 3
+
+[node name="OppoentProperty" type="Panel" parent="."]
+modulate = Color(0.011764706, 0.12156863, 0.16470589, 0.49803922)
+self_modulate = Color(0.36862746, 0.36862746, 0.36862746, 0.4)
+offset_left = 67.5
+offset_top = 90.0
+offset_right = 487.5
+offset_bottom = 410.0
+
+[node name="OppoentAttack" type="Label" parent="OppoentProperty"]
+layout_mode = 0
+anchor_left = 0.023809526
+anchor_top = 0.031249985
+anchor_right = 0.97619045
+anchor_bottom = 0.21874997
+text = "攻击力:    0"
+label_settings = ExtResource("5_lquwl")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppoentLife" type="Label" parent="OppoentProperty"]
+layout_mode = 0
+anchor_left = 0.023809524
+anchor_top = 0.25
+anchor_right = 0.97619045
+anchor_bottom = 0.4375
+offset_top = 10.0
+offset_bottom = 10.0
+text = "生命：     100 / 100"
+label_settings = ExtResource("5_lquwl")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppoentHandCard" type="Label" parent="OppoentProperty"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023809524
+anchor_top = 0.46875
+anchor_right = 0.97619045
+anchor_bottom = 0.65625
+offset_top = 20.0
+offset_bottom = 20.0
+text = "手牌：     0 / 7"
+label_settings = ExtResource("5_lquwl")
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppoentAmmo" type="Label" parent="OppoentProperty"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023809526
+anchor_top = 0.031249985
+anchor_right = 0.97619045
+anchor_bottom = 0.21874997
+offset_top = 240.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "弹匣:       0 / 3"
+label_settings = ExtResource("5_lquwl")
+vertical_alignment = 1
 
 [node name="PlayerProperty" type="Panel" parent="."]
 modulate = Color(0.011764706, 0.12156863, 0.16470589, 0.49803922)

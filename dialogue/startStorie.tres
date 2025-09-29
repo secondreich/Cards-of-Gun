@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="dialogueGroup" load_steps=8 format=3 uid="uid://x07kd5hv2ckp"]
+
+[ext_resource type="Script" uid="uid://rtxg2hbq8r7j" path="res://dialogue/dialogue.gd" id="1_mwtk7"]
+[ext_resource type="Script" uid="uid://c8swl8bq053et" path="res://dialogue/dialogueGroup.gd" id="2_vp4yp"]
+
+[sub_resource type="Resource" id="Resource_mwtk7"]
+script = ExtResource("1_mwtk7")
+speaker = "narrator"
+content = "很久很久以前，在遥远的西部荒漠。这里人迹罕见，法律崩坏。"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
+[sub_resource type="Resource" id="Resource_vp4yp"]
+script = ExtResource("1_mwtk7")
+speaker = "narrator"
+content = "一天两名无法之徒在这里相遇。很不幸，两人并无恩怨，但却生起矛盾。"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
+[sub_resource type="Resource" id="Resource_dpmfy"]
+script = ExtResource("1_mwtk7")
+speaker = "一名无法之徒"
+content = "你瞅啥？"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
+[sub_resource type="Resource" id="Resource_3pj85"]
+script = ExtResource("1_mwtk7")
+speaker = "另一名无法之徒"
+content = "瞅你咋的？"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
+[sub_resource type="Resource" id="Resource_v0ok2"]
+script = ExtResource("1_mwtk7")
+speaker = "narrator"
+content = "现在他们有恩怨了，于是两人决定用决斗来解决这些，然而就在这时……"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
+[resource]
+script = ExtResource("2_vp4yp")
+dialogueGroup = Array[ExtResource("1_mwtk7")]([SubResource("Resource_mwtk7"), SubResource("Resource_vp4yp"), SubResource("Resource_dpmfy"), SubResource("Resource_3pj85"), SubResource("Resource_v0ok2")])
+metadata/_custom_type_script = "uid://c8swl8bq053et"

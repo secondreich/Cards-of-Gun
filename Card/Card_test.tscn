@@ -78,6 +78,7 @@ stretch_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Card Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0.043137256)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.03636364

@@ -7,7 +7,7 @@ enum cardState{following, dragging, del, vfs}
 @export var follow_target : Node
 
 var velocity = Vector2.ZERO
-var damping = 0.25
+var damping = 0.3
 var stiffness = 500
 
 var whichDeckIn #检查卡组落点

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://blpxnyj1yikx6"]
+
+[ext_resource type="PackedScene" uid="uid://4r7rawsck8wa" path="res://dialogue/dialogueUi.tscn" id="1_emke5"]
+
+[node name="Stories" type="Node2D"]
+
+[node name="DialogueUi" parent="." instance=ExtResource("1_emke5")]
+offset_left = 2.0
+offset_top = 444.0
+offset_right = 1152.0
+offset_bottom = 644.0

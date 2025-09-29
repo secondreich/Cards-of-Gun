@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://2vbd0o2lue8e"]
+[gd_scene load_steps=8 format=3 uid="uid://2vbd0o2lue8e"]
 
 [ext_resource type="Script" uid="uid://c3kgk1vop3ws2" path="res://Gd script/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cauq2ubb5e1tj" path="res://cardBackground/cardBackground.tscn" id="2_0xm2m"]
@@ -9,6 +9,12 @@
 font_size = 18
 shadow_size = 12
 shadow_color = Color(0.00392157, 0, 0, 0.615686)
+
+[sub_resource type="FontVariation" id="FontVariation_1bvp3"]
+
+[sub_resource type="Theme" id="Theme_lquwl"]
+default_font = SubResource("FontVariation_1bvp3")
+default_font_size = 1
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("scene_1", "scene_2")]
 position = Vector2(0.99999994, 0)
@@ -155,6 +161,18 @@ label_settings = ExtResource("5_lquwl")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="OppoentLife2" type="ProgressBar" parent="OppoentProperty"]
+modulate = Color(0.5686275, 0.20392157, 0, 1)
+self_modulate = Color(0.9815763, 0.9815763, 0.9815763, 1)
+layout_mode = 0
+anchor_left = 0.01904762
+anchor_top = 0.375
+anchor_right = 0.9714286
+anchor_bottom = 0.5625
+theme = SubResource("Theme_lquwl")
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
 [node name="PlayerProperty" type="Panel" parent="."]
 modulate = Color(0.011764706, 0.12156863, 0.16470589, 0.49803922)
 self_modulate = Color(0.36862746, 0.36862746, 0.36862746, 0.4)
@@ -215,6 +233,18 @@ grow_vertical = 2
 text = "弹匣:       0 / 3"
 label_settings = ExtResource("5_lquwl")
 vertical_alignment = 1
+
+[node name="PlayLife2" type="ProgressBar" parent="PlayerProperty"]
+modulate = Color(0.5686275, 0.20392157, 0, 1)
+self_modulate = Color(0.9815763, 0.9815763, 0.9815763, 1)
+layout_mode = 0
+anchor_left = 0.017857138
+anchor_top = 0.2890625
+anchor_right = 0.9702381
+anchor_bottom = 0.4765625
+theme = SubResource("Theme_lquwl")
+value = 100.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="DrawCard/Button" to="." method="get_cards"]
 [connection signal="button_down" from="NextTurn/Button" to="." method="next_turn"]

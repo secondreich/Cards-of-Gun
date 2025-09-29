@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://4r7rawsck8wa"]
+
+[ext_resource type="Script" uid="uid://b64de4ov6o6bb" path="res://dialogue/dialogue_ui.gd" id="1_fs2ar"]
+[ext_resource type="Resource" uid="uid://x07kd5hv2ckp" path="res://dialogue/startStorie.tres" id="2_2pfd6"]
+
+[node name="DialogueUi" type="Control" node_paths=PackedStringArray("leftAvatar", "speaker", "content", "rightAvatar")]
+custom_minimum_size = Vector2(1150, 200)
+layout_mode = 3
+anchor_right = 0.9982639
+anchor_bottom = 1.0030864
+script = ExtResource("1_fs2ar")
+leftAvatar = NodePath("HBoxContainer/leftAvatar")
+speaker = NodePath("HBoxContainer/Panel/MarginContainer/VBoxContainer/speaker")
+content = NodePath("HBoxContainer/Panel/MarginContainer/VBoxContainer/content")
+rightAvatar = NodePath("HBoxContainer/rightAvatar")
+mainDialogues = ExtResource("2_2pfd6")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 200.0
+
+[node name="leftAvatar" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="speaker" type="RichTextLabel" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "SPEAKER"
+
+[node name="content" type="RichTextLabel" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Content
+"
+
+[node name="rightAvatar" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="button_down" from="Button" to="." method="_on_click_to_next_dialogue"]

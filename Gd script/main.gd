@@ -27,6 +27,8 @@ var discard_deck: Array = []
 
 func _ready() -> void:
 	$HandCardPer.max_value = 7
+	$OppoentProperty/OppoentLife2.max_value = oppoentrMaxLife
+	$PlayerProperty/PlayLife2.max_value = playerMaxLife
 	update_data()
 	get_oppoent_cards()
 	print("ready")
@@ -36,10 +38,10 @@ func _process(delta: float) -> void:
 	var handsCards = $HandCards.cardDeck.get_children()
 	
 	#判断是否能下一轮
-	#if scene_1.card_total_num < playerLife:
-		#$DrawCard/Button.disabled = false
-	#else:
-		#$DrawCard/Button.disabled = true
+	if scene_1.card_total_num <  playerLife/20 :
+		$DrawCard/Button.disabled = false
+	else:
+		$DrawCard/Button.disabled = true
 	
 	#检查复数牌的打出机制
 	if not usedCards.is_empty():  
@@ -72,6 +74,11 @@ func add_new_hand_card(cardName, cardDeck, _isOppoent, _caller = scene_1,  _call
 	return cardToAdd
 
 func get_cards():
+	#复数检查防止掉帧
+	if scene_1.card_total_num <  playerLife/20 :
+		$DrawCard/Button.disabled = false
+		
+		
 	var num_cards = 3
 	var cards_drawn = 0
 	var selected_cards = []
@@ -104,6 +111,8 @@ func get_cards():
 #更新数据
 func update_data() -> void:
 	$HandCardPer.value = scene_1.card_total_num
+	$OppoentProperty/OppoentLife2.value = oppoentLife
+	$PlayerProperty/PlayLife2.value = playerLife
 	$PlayerProperty/PlayerAttack.text ="攻击：     " + str(playerAttack)
 	$PlayerProperty/PlayerHandCard.text = "手牌：     " + str(scene_1.card_total_num) + " / " + str(7)
 	$PlayerProperty/PlayerLife.text = "生命：     " + str(playerLife) + " / " + str(playerMaxLife)
@@ -138,7 +147,8 @@ func next_turn() -> void:
 		c.cardCurrentState = c.cardState.del
 		
 		#在弃牌堆中加入打出的卡，再从使用栏中将其删掉
-		discard_deck.append(c.cardName)
+		if c.cardName != "volley":
+			discard_deck.append(c.cardName)
 		delCards +=1
 	scene_1.card_total_num -= delCards
 	
@@ -213,7 +223,7 @@ func get_oppoent_deck() -> Array:
 	if oppoentAmmo == oppoentMaxAmmo:
 		return ["volley"]
 	if playerAmmo == 0:
-		oppoentCards.filter(func(x): return x != "avoid")
+		oppoentCards = oppoentCards.filter(func(x): return x != "avoid")
 	if oppoentAmmo == 0:
-		oppoentCards.filter(func(x): return x != "shoot")
+		oppoentCards = oppoentCards.filter(func(x): return x != "shoot")
 	return oppoentCards

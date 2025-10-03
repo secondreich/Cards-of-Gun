@@ -5,7 +5,5 @@
 [node name="Stories" type="Node2D"]
 
 [node name="DialogueUi" parent="." instance=ExtResource("1_emke5")]
-offset_left = 2.0
-offset_top = 444.0
-offset_right = 1152.0
-offset_bottom = 644.0
+offset_right = 1150.0
+offset_bottom = 200.0

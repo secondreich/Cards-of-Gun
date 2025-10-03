@@ -1,19 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://4r7rawsck8wa"]
+[gd_scene load_steps=4 format=3 uid="uid://4r7rawsck8wa"]
 
 [ext_resource type="Script" uid="uid://b64de4ov6o6bb" path="res://dialogue/dialogue_ui.gd" id="1_fs2ar"]
 [ext_resource type="Resource" uid="uid://x07kd5hv2ckp" path="res://dialogue/startStorie.tres" id="2_2pfd6"]
+[ext_resource type="AudioStream" uid="uid://d4f36e33noykw" path="res://SE/type_se.ogg" id="3_t0s8b"]
 
-[node name="DialogueUi" type="Control" node_paths=PackedStringArray("leftAvatar", "speaker", "content", "rightAvatar")]
+[node name="DialogueUi" type="Control" node_paths=PackedStringArray("leftAvatar", "speaker", "content", "rightAvatar", "type_sound")]
 custom_minimum_size = Vector2(1150, 200)
 layout_mode = 3
 anchor_right = 0.9982639
 anchor_bottom = 1.0030864
+offset_left = 3.0
+offset_right = 3.0
 script = ExtResource("1_fs2ar")
 leftAvatar = NodePath("HBoxContainer/leftAvatar")
 speaker = NodePath("HBoxContainer/Panel/MarginContainer/VBoxContainer/speaker")
 content = NodePath("HBoxContainer/Panel/MarginContainer/VBoxContainer/content")
 rightAvatar = NodePath("HBoxContainer/rightAvatar")
 mainDialogues = ExtResource("2_2pfd6")
+text_speed = 18.0
+type_sound = NodePath("TextSE")
+sound_interval = 0.25
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -50,12 +56,16 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 20
 text = "SPEAKER"
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="content" type="RichTextLabel" parent="HBoxContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Content
 "
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="rightAvatar" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
@@ -69,5 +79,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextSE" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t0s8b")
 
 [connection signal="button_down" from="Button" to="." method="_on_click_to_next_dialogue"]

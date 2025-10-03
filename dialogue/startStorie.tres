@@ -7,12 +7,14 @@
 script = ExtResource("1_mwtk7")
 speaker = "narrator"
 content = "很久很久以前，在遥远的西部荒漠。这里人迹罕见，法律崩坏。"
+uiPosition = 0
 metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
 
 [sub_resource type="Resource" id="Resource_vp4yp"]
 script = ExtResource("1_mwtk7")
 speaker = "narrator"
 content = "一天两名无法之徒在这里相遇。很不幸，两人并无恩怨，但却生起矛盾。"
+uiPosition = 1
 metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
 
 [sub_resource type="Resource" id="Resource_dpmfy"]
@@ -31,6 +33,7 @@ metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
 script = ExtResource("1_mwtk7")
 speaker = "narrator"
 content = "现在他们有恩怨了，于是两人决定用决斗来解决这些，然而就在这时……"
+uiPosition = 1
 metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
 
 [resource]

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b651jp8ekvr1j" path="res://cardBackground/cardBackground.gd" id="1_longk"]
 
 [node name="deck" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(220, 320)
 offset_right = 1580.0
 offset_bottom = 320.0
@@ -17,7 +18,6 @@ offset_right = -1580.0
 offset_bottom = -320.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(110, 160)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(1, 0)

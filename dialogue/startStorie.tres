@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="dialogueGroup" load_steps=8 format=3 uid="uid://x07kd5hv2ckp"]
+[gd_resource type="Resource" script_class="dialogueGroup" load_steps=12 format=3 uid="uid://x07kd5hv2ckp"]
 
 [ext_resource type="Script" uid="uid://rtxg2hbq8r7j" path="res://dialogue/dialogue.gd" id="1_mwtk7"]
 [ext_resource type="Script" uid="uid://c8swl8bq053et" path="res://dialogue/dialogueGroup.gd" id="2_vp4yp"]
@@ -7,7 +7,7 @@
 script = ExtResource("1_mwtk7")
 speaker = "narrator"
 content = "很久很久以前，在遥远的西部荒漠。这里人迹罕见，法律崩坏。"
-uiPosition = 0
+uiPosition = 1
 metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
 
 [sub_resource type="Resource" id="Resource_vp4yp"]
@@ -36,7 +36,31 @@ content = "现在他们有恩怨了，于是两人决定用决斗来解决这些
 uiPosition = 1
 metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
 
+[sub_resource type="Resource" id="Resource_al8i0"]
+script = ExtResource("1_mwtk7")
+speaker = "一名无法之徒"
+content = "我说，那群呆子只知道比拔枪速度，我应该用一些不一样的方式搞定你。"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
+[sub_resource type="Resource" id="Resource_nv8gr"]
+script = ExtResource("1_mwtk7")
+speaker = "另一名无法之徒"
+content = "你想咋样？"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
+[sub_resource type="Resource" id="Resource_iyi8r"]
+script = ExtResource("1_mwtk7")
+speaker = "一名无法之徒"
+content = "我们先退掉所有子弹，再交换弹匣。"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
+[sub_resource type="Resource" id="Resource_nh0h2"]
+script = ExtResource("1_mwtk7")
+speaker = "narrator"
+content = "就这样，决斗开始了……"
+metadata/_custom_type_script = "uid://rtxg2hbq8r7j"
+
 [resource]
 script = ExtResource("2_vp4yp")
-dialogueGroup = Array[ExtResource("1_mwtk7")]([SubResource("Resource_mwtk7"), SubResource("Resource_vp4yp"), SubResource("Resource_dpmfy"), SubResource("Resource_3pj85"), SubResource("Resource_v0ok2")])
+dialogueGroup = Array[ExtResource("1_mwtk7")]([SubResource("Resource_mwtk7"), SubResource("Resource_vp4yp"), SubResource("Resource_dpmfy"), SubResource("Resource_3pj85"), SubResource("Resource_v0ok2"), SubResource("Resource_al8i0"), SubResource("Resource_nv8gr"), SubResource("Resource_iyi8r"), SubResource("Resource_nh0h2")])
 metadata/_custom_type_script = "uid://c8swl8bq053et"

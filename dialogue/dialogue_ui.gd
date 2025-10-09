@@ -22,7 +22,6 @@ var current_tween: Tween
 var type_sound_timer: Timer  
 
 func _ready():
-	
 	type_sound_timer = Timer.new()
 	type_sound_timer.wait_time = sound_interval
 	type_sound_timer.one_shot = false
@@ -64,14 +63,11 @@ func add_next_dialogue() -> void:
 		rightAvatar.texture = now_dialogue.avatar
 	
 	if now_dialogue.uiPosition == dialogue.uiEnum.up:
-		self.position.y = 0
-		print(self.position.y )
+		$HBoxContainer.position.y = 0
 	elif now_dialogue.uiPosition == dialogue.uiEnum.mid:
-		self.position.y = (get_viewport_rect().size.y - leftAvatar.get_rect().size.y ) /2
-		print(self.position.y )
+		$HBoxContainer.position.y = (get_viewport_rect().size.y - leftAvatar.get_rect().size.y ) /2
 	elif now_dialogue.uiPosition == dialogue.uiEnum.bottle:
-		self.position.y = (get_viewport_rect().size.y - leftAvatar.get_rect().size.y ) 
-		print(self.position.y )
+		$HBoxContainer.position.y = (get_viewport_rect().size.y - leftAvatar.get_rect().size.y ) 
 
 
 func _on_click_to_next_dialogue():

@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	var handsCards = $HandCards.cardDeck.get_children()
 	
 	#判断是否能下一轮
-	if scene_1.card_total_num <  playerLife/20 :
+	if scene_1.card_total_num <  playerLife/20.0 :
 		$DrawCard/Button.disabled = false
 	else:
 		$DrawCard/Button.disabled = true
@@ -54,7 +54,6 @@ func _process(delta: float) -> void:
 				c.pickButton.disabled = true
 			else:
 				c.pickButton.disabled = false
-	
 	update_data()
 	
 #下一轮次，发牌
@@ -75,9 +74,8 @@ func add_new_hand_card(cardName, cardDeck, _isOppoent, _caller = scene_1,  _call
 
 func get_cards():
 	#复数检查防止掉帧
-	if scene_1.card_total_num <  playerLife/20 :
+	if scene_1.card_total_num <  playerLife/20.0 :
 		$DrawCard/Button.disabled = false
-		
 		
 	var num_cards = 3
 	var cards_drawn = 0

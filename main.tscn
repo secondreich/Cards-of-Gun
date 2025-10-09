@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://2vbd0o2lue8e"]
+[gd_scene load_steps=10 format=3 uid="uid://2vbd0o2lue8e"]
 
 [ext_resource type="Script" uid="uid://c3kgk1vop3ws2" path="res://Gd script/main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cauq2ubb5e1tj" path="res://cardBackground/cardBackground.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://ce2iiohsquvdv" path="res://image/backGround.png" id="2_lquwl"]
 [ext_resource type="Theme" uid="uid://cnbfqosw6n3at" path="res://theme/card_theme.tres" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cl0nchcph3gv4" path="res://image/frame.png" id="5_7mycd"]
 [ext_resource type="LabelSettings" uid="uid://d4mii2ld825i4" path="res://theme/font.tres" id="5_lquwl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
@@ -25,12 +27,19 @@ scene_2 = NodePath("OppoentCards")
 oppoentLife = 100
 playerDeck = ["load", "load", "load", "shoot", "shoot", "shoot", "avoid"]
 
+[node name="BackGround" type="TextureRect" parent="."]
+offset_right = 2877.4998
+offset_bottom = 1619.9999
+texture = ExtResource("2_lquwl")
+stretch_mode = 1
+
 [node name="DrawCard" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.121569)
-offset_left = 185.0
-offset_top = 690.0
-offset_right = 304.9997
-offset_bottom = 755.0
+offset_left = 195.00002
+offset_top = 622.5
+offset_right = 314.9997
+offset_bottom = 687.5
+scale = Vector2(1.6, 1.6)
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="DrawCard"]
@@ -40,7 +49,8 @@ offset_bottom = 65.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="DrawCard"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0000025
 anchor_bottom = 1.0
 theme = ExtResource("3_h2yge")
@@ -58,10 +68,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="NextTurn" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.121569)
-offset_left = 186.6667
-offset_top = 785.833
-offset_right = 306.66638
-offset_bottom = 850.833
+offset_left = 197.49998
+offset_top = 802.49994
+offset_right = 317.49966
+offset_bottom = 867.49994
+scale = Vector2(1.6, 1.6)
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="NextTurn"]
@@ -93,17 +104,62 @@ offset_top = 1170.0
 offset_right = 2225.0
 offset_bottom = 1490.0
 
+[node name="Frame" type="NinePatchRect" parent="HandCards"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7mycd")
+region_rect = Rect2(-0.22326851, 1.8620367, 69.34122, 69.34098)
+patch_margin_left = 16
+patch_margin_top = 15
+patch_margin_right = 14
+patch_margin_bottom = 21
+
 [node name="UsedCards" parent="." groups=["卡组分组"] instance=ExtResource("2_0xm2m")]
 offset_left = 645.0
 offset_top = 640.0
 offset_right = 2225.0
 offset_bottom = 960.0
 
+[node name="Frame" type="NinePatchRect" parent="UsedCards"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7mycd")
+region_rect = Rect2(-0.22326851, 1.8620367, 69.34122, 69.34098)
+patch_margin_left = 16
+patch_margin_top = 15
+patch_margin_right = 14
+patch_margin_bottom = 21
+
 [node name="OppoentCards" parent="." instance=ExtResource("2_0xm2m")]
 offset_left = 645.0
 offset_top = 100.0
 offset_right = 2225.0
 offset_bottom = 420.0
+
+[node name="Frame" type="NinePatchRect" parent="OppoentCards"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7mycd")
+region_rect = Rect2(-0.22326851, 1.8620367, 69.34122, 69.34098)
+patch_margin_left = 16
+patch_margin_top = 15
+patch_margin_right = 14
+patch_margin_bottom = 21
 
 [node name="HandCardPer" type="ProgressBar" parent="."]
 offset_left = 610.0

@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 BaseCard="*res://assets/baseCard.gd"
 VfsLayer="*res://VFSLayer.tscn"
 
+[display]
+
+mouse_cursor/custom_image="uid://doa66hftay6ay"
+
 [global_group]
 
 "卡组分组"=""

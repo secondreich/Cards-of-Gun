@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdt7uvydprrvm"]
+
+[ext_resource type="Script" uid="uid://cs0u88kyc5r0e" path="res://deck_build.gd" id="1_b4q2a"]
+[ext_resource type="PackedScene" uid="uid://cauq2ubb5e1tj" path="res://cardBackground/cardBackground.tscn" id="2_c151q"]
+
+[node name="DeckBuild" type="Node2D" node_paths=PackedStringArray("scene_1", "scene_2", "scene_3", "scene_4")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_b4q2a")
+scene_1 = NodePath("CurrentDeck")
+scene_2 = NodePath("CurrentDeck")
+scene_3 = NodePath("CurrentDeck")
+scene_4 = NodePath("CurrentDeck")
+
+[node name="CurrentDeck" parent="." instance=ExtResource("2_c151q")]
+offset_left = 130.0
+offset_top = 110.0
+offset_right = 1710.0
+offset_bottom = 430.0

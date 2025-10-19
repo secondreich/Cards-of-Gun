@@ -28,6 +28,7 @@ oppoentLife = 100
 playerDeck = ["load", "load", "load", "shoot", "shoot", "shoot", "avoid"]
 
 [node name="BackGround" type="TextureRect" parent="."]
+self_modulate = Color(0.7058824, 0.7058824, 0.7058824, 0.39215687)
 offset_right = 2877.4998
 offset_bottom = 1619.9999
 texture = ExtResource("2_lquwl")
@@ -99,13 +100,13 @@ label_settings = SubResource("LabelSettings_h2yge")
 metadata/_edit_use_anchors_ = true
 
 [node name="HandCards" parent="." groups=["卡组分组"] instance=ExtResource("2_0xm2m")]
+self_modulate = Color(1, 1, 1, 1)
 offset_left = 645.0
 offset_top = 1170.0
 offset_right = 2225.0
 offset_bottom = 1490.0
 
 [node name="Frame" type="NinePatchRect" parent="HandCards"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,6 +121,7 @@ patch_margin_right = 14
 patch_margin_bottom = 21
 
 [node name="UsedCards" parent="." groups=["卡组分组"] instance=ExtResource("2_0xm2m")]
+self_modulate = Color(1, 1, 1, 1)
 offset_left = 645.0
 offset_top = 640.0
 offset_right = 2225.0
@@ -141,6 +143,7 @@ patch_margin_right = 14
 patch_margin_bottom = 21
 
 [node name="OppoentCards" parent="." instance=ExtResource("2_0xm2m")]
+self_modulate = Color(1, 1, 1, 1)
 offset_left = 645.0
 offset_top = 100.0
 offset_right = 2225.0

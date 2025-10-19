@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1ruc38bd1ikl"]
+
+[ext_resource type="Texture2D" uid="uid://b3lyxlhnwllc7" path="res://image/小镇背景.png" id="1_gx6k8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BackGround" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.53333336)
+offset_right = 1152.0
+offset_bottom = 649.0
+texture = ExtResource("1_gx6k8")
+expand_mode = 1
+stretch_mode = 6
